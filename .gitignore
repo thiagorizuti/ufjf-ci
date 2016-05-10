@@ -1,3 +1,17 @@
+
+# Created by https://www.gitignore.io/api/java,netbeans
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+.nb-gradle/
+
+
+### Java ###
 *.class
 
 # Mobile Tools for Java (J2ME)
