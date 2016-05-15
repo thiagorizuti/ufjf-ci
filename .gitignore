@@ -1,26 +1,36 @@
+# Created by https://www.gitignore.io/api/c
 
-# Created by https://www.gitignore.io/api/java,netbeans
+### C ###
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
 
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-.nb-gradle/
+# Precompiled Headers
+*.gch
+*.pch
 
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
 
-### Java ###
-*.class
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
 
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Debug files
+*.dSYM/
+*.su
