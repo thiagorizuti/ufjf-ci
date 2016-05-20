@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-
-#define MACHINES 2
-#define JOBS 5
-#define THRESHOLD 1600
-
-double cost[MACHINES] = {15,8};
-double times[JOBS] = {25,38,37,42,14};
+double *cost, *times;
+int machines, jobs, threshold;
 
 void quick_sort(double value[], int index[],int left, int right){
     int i, j, aux_index;
@@ -43,34 +39,34 @@ void quick_sort(double value[], int index[],int left, int right){
 }
 
 void greedy_schedule(){
-  int i,j,p, priority, best_machine, sort_index[MACHINES], schedule[JOBS];
-  double completition_time[MACHINES],total_time, total_cost, cost_impact,
-    time_impact, impact[MACHINES];
+  int i,j,p, priority, best_machine, sort_index[machines], schedule[jobs];
+  double completition_time[machines],total_time, total_cost, cost_impact,
+    time_impact, impact[machines];
 
   //INITALIZING VALUES
   total_time = 0;
   total_cost = 0;
   priority = 0;
-  for(i=0; i < JOBS; i ++){
+  for(i=0; i < jobs; i ++){
     schedule[i] = -1;
   }
-  for(j=0; j < MACHINES; j ++){
+  for(j=0; j < machines; j ++){
     completition_time[j] = 0;
     sort_index[j] = j;
   }
 
-  for (i = 0; i < JOBS; i++){
+  for (i = 0; i < jobs; i++){
     //CHECK WHETHER THE TIME OR THE COST IS THE PRIORITY
-    if((total_cost/THRESHOLD) > ((float)i/JOBS)){
+    if((total_cost/threshold) > ((float)i/jobs)){
       priority=1;
     }
     else{
       priority=0;
     }
 
-    for(j = 0; j < MACHINES; j++){
+    for(j = 0; j < machines; j++){
 
-      for(p=0; p < MACHINES; p ++){
+      for(p=0; p < machines; p ++){
         sort_index[p] = p;
       }
       //IN THE FIRST ITERATION ONLY TAKES THE MACHINE COST IN ACCOUNT
@@ -96,8 +92,8 @@ void greedy_schedule(){
 
     }
     //SELECTING THE BEST CANDIDATE MACHINE
-    quick_sort(impact,sort_index,0,MACHINES-1);
-    best_machine = sort_index[MACHINES-1];
+    quick_sort(impact,sort_index,0,machines-1);
+    best_machine = sort_index[machines-1];
 
     //SCHEDULING AND UPDATING THE TOTAL COST AND TOTAL TIME
     schedule[i] = best_machine;
@@ -109,7 +105,7 @@ void greedy_schedule(){
 
   }
   //PRINT THE RESULT
-  for (p = 0; p < JOBS; p++){
+  for (p = 0; p < jobs; p++){
     printf("j%d na m%d\n",p,schedule[p]);
   }
   printf("total time: %.02f\n",total_time);
@@ -119,6 +115,70 @@ void greedy_schedule(){
 
 }
 
-int main(){
-    greedy_schedule();
+void read_data(char *file_name){
+    FILE *fp;
+    fp = fopen(file_name, "rb");
+    char c;
+    char buff[256];
+    int  i = 0, j = 0, p = 0, q = 0;
+    int line_break = 0;
+    char value[10];
+
+    while((c = fgetc(fp)) != EOF){
+      if(c == 10 || c == 13 || c == 32){
+        if(line_break == 0){
+          line_break = 1;
+          buff[i] = '\0';
+          i = 0;
+          if(j == 0){
+            machines = atoi(buff);
+            cost = (double*) malloc (machines * sizeof(double));
+            j++;
+          }
+          else if(j == 1){
+            jobs = atoi(buff);
+            times = (double*) malloc (jobs * sizeof(double));
+            j++;
+          }
+          if(j > 1 && j <= 1 + machines){
+            cost[p] = atof(buff);
+            p++;
+          }
+          if(j > 1 + machines && j <= 1 + machines + jobs){
+            cost[q] = atof(buff);
+            q++;
+          }
+        }
+      }else {
+        line_break = 0;
+        buff[i] = c;
+        i++;
+        if(i >= 256){
+          fprintf(stderr,"Buffer overflow.\n");
+          break;
+        }
+      }
+
+    }
+    threshold = atoi(buff);
+}
+
+int main(int argc, char *argv[]){
+  if(argc != 2){
+		fprintf(stderr,"Filename expected as an argument.\n");
+		return 1;
+	}
+  int i;
+  read_data(argv[1]);
+  printf("%d, %d, %d\n", machines, jobs, threshold);
+  printf("MACHINES:\n");
+  for(i=0;i<machines;i++){
+    printf("%.2f\n",cost[i]);
+  }
+  printf("JOBS:\n");
+  for(i=0;i<jobs;i++){
+    printf("%.2f\n",times[i]);
+  }
+
+  greedy_schedule();
 }
