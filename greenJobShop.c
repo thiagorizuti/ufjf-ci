@@ -5,7 +5,7 @@
 
 double *cost, *times, total_time, total_cost;
 long double processing_time;
-int machines, jobs, threshold, *schedule;
+int machines, jobs, threshold, **scheduling;
 
 void quick_sort(double value[], int index[],int left, int right){
     int i, j, aux_index;
@@ -40,10 +40,30 @@ void quick_sort(double value[], int index[],int left, int right){
 
 }
 
+void schedule(int job, int machine){
+  int i;
+  for(i = 0; i<jobs; i++){
+    if(scheduling[machine][i] == -1){
+        scheduling[machine][i] = job;
+        break;
+    }
+  }
+}
+
+double completition_time(int machine){
+  int i; int count = 0;
+  for(i = 0; i<jobs; i++){
+    if(scheduling[machine][i] != -1){
+        count = count + times[i];
+    }
+  }
+  return count;
+}
+
+
 void greedy_schedule(){
   int i,j,p, priority, best_machine, sort_index[machines];
-  double completition_time[machines], cost_impact,
-    time_impact, impact[machines];
+  double  completition_time[machines], impact[machines];
 
   //INITALIZING VALUES
   priority = 0;
@@ -71,20 +91,19 @@ void greedy_schedule(){
       if(i==0){
         impact[j] = cost[j];
       }
-      //IN OTHER ITERATIONS CONSIDERATES COST AND TIME IMPACTS
+      //IN OTHER ITERATIONS CONSIDERATES COST OR TIME IMPACTS
       else{
-        cost_impact = ((total_cost + cost[j]-total_cost)/total_cost)*100;
-        if(completition_time[j] + times[i] > total_time){
-          time_impact = ((completition_time[j] + times[i]-total_time)/total_time)*100;
-        }else{
-          time_impact = 0.0;
-        }
 
         //CHECK THE PRIORITY TO CALCULATE IMPACT
         if(priority == 0){
-          impact[j] = time_impact;
+          /*if(completition_time[j] + times[i] > total_time){
+            impact[j] = ((completition_time[j] + times[i]-total_time)/total_time)*100;
+          }else{
+            impact[j] = 0.0;
+          }*/
+          impact[j] = ((completition_time[j] + times[i])/total_time)*100;
         }else{
-          impact[j] = cost_impact;
+          impact[j] = ((cost[j]*times[i])/total_cost)*100;
         }
       }
 
@@ -94,12 +113,14 @@ void greedy_schedule(){
     best_machine = sort_index[machines-1];
 
     //SCHEDULING AND UPDATING THE TOTAL COST AND TOTAL TIME
-    schedule[i] = best_machine;
+    printf("j%d => m%d\n", i,best_machine );
+    schedule(i,best_machine);
     total_cost = total_cost + times[i]*cost[best_machine];
-    completition_time[best_machine] = completition_time[best_machine]  + times[i];
-    if(completition_time[best_machine] > total_time){
+    completition_time[best_machine] = completition_time[best_machine] + times[i];
+    /*if(completition_time[best_machine] > total_time){
       total_time = completition_time[best_machine];
-    }
+    }*/
+    total_time = total_time + completition_time[best_machine] + times[i];
 
   }
 
@@ -153,13 +174,20 @@ void read_data(char *file_name){
     threshold = atoi(buff);
 }
 
+
+
 void initialize(){
-  int i;
+  int i,j;
   total_time = 0;
   total_cost = 0;
-  schedule = (int*) malloc (jobs * sizeof(int));
-   for(i=0; i < jobs; i ++){
-    schedule[i] = -1;
+  scheduling = (int**)malloc(machines * sizeof(int*));
+  for (i = 0; i < machines; i++){
+       scheduling[i] = (int*) malloc(jobs * sizeof(int));
+  }
+  for (i = 0; i < machines; i++){
+       for (j = 0; j < jobs; j++){
+            scheduling[i][j] = -1;
+       }
   }
 }
 
@@ -169,8 +197,8 @@ void print_solution(char name[]){
   for(i = 0; i < machines; i++){
     printf("m%d:",i);
     for (j = 0; j < jobs; j++){
-      if(schedule[j]==i){
-          printf(" j%d,",j);
+      if(scheduling[i][j]!= -1){
+          printf(" j%d,",scheduling[i][j]);
       }
     }
     printf("\n");
@@ -186,22 +214,16 @@ int main(int argc, char *argv[]){
 		fprintf(stderr,"Filename expected as an argument.\n");
 		return 1;
 	}
-  int i;
+  int i,j;
   clock_t t;
   read_data(argv[1]);
-  printf("%d, %d, %d\n", machines, jobs, threshold);
-  printf("MACHINES:\n");
-  for(i=0;i<machines;i++){
-    printf("%.2f\n",cost[i]);
-  }
-  printf("JOBS:\n");
-  for(i=0;i<jobs;i++){
-    printf("%.2f\n",times[i]);
-  }
   initialize();
   t = clock();
   greedy_schedule();
   t = clock() - t;
   processing_time = ((double)t)/CLOCKS_PER_SEC;
   print_solution(argv[1]);
+  free(times);
+  free(cost);
+  free(scheduling);
 }
