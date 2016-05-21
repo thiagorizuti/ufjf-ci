@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
-double *cost, *times;
-int machines, jobs, threshold;
+double *cost, *times, total_time, total_cost;
+long double processing_time;
+int machines, jobs, threshold, *schedule;
 
 void quick_sort(double value[], int index[],int left, int right){
     int i, j, aux_index;
@@ -39,17 +41,13 @@ void quick_sort(double value[], int index[],int left, int right){
 }
 
 void greedy_schedule(){
-  int i,j,p, priority, best_machine, sort_index[machines], schedule[jobs];
-  double completition_time[machines],total_time, total_cost, cost_impact,
+  int i,j,p, priority, best_machine, sort_index[machines];
+  double completition_time[machines], cost_impact,
     time_impact, impact[machines];
 
   //INITALIZING VALUES
-  total_time = 0;
-  total_cost = 0;
   priority = 0;
-  for(i=0; i < jobs; i ++){
-    schedule[i] = -1;
-  }
+
   for(j=0; j < machines; j ++){
     completition_time[j] = 0;
     sort_index[j] = j;
@@ -104,14 +102,6 @@ void greedy_schedule(){
     }
 
   }
-  //PRINT THE RESULT
-  for (p = 0; p < jobs; p++){
-    printf("j%d na m%d\n",p,schedule[p]);
-  }
-  printf("total time: %.02f\n",total_time);
-  printf("total cost: %.02f\n",total_cost);
-
-  printf("\n\n");
 
 }
 
@@ -140,11 +130,11 @@ void read_data(char *file_name){
             times = (double*) malloc (jobs * sizeof(double));
             j++;
           }
-          if(j > 1 && j <= 1 + machines){
+          else if(j > 1 && j <= 1 + machines){
             cost[p] = atof(buff);
             p++;
           }
-          if(j > 1 + machines && j <= 1 + machines + jobs){
+          else if(j > 1 + machines && j <= 1 + machines + jobs){
             cost[q] = atof(buff);
             q++;
           }
@@ -163,12 +153,41 @@ void read_data(char *file_name){
     threshold = atoi(buff);
 }
 
+void initialize(){
+  int i;
+  total_time = 0;
+  total_cost = 0;
+  schedule = (int*) malloc (jobs * sizeof(int));
+   for(i=0; i < jobs; i ++){
+    schedule[i] = -1;
+  }
+}
+
+void print_solution(char name[]){
+  int i, j;
+  printf("%s\n", name);
+  for(i = 0; i < machines; i++){
+    printf("m%d:",i);
+    for (j = 0; j < jobs; j++){
+      if(schedule[j]==i){
+          printf(" j%d,",j);
+      }
+    }
+    printf("\n");
+  }
+  printf("total time: %.02f\n",total_time);
+  printf("total cost: %.02f\n",total_cost);
+  printf("processing time: %Lf s\n",processing_time);
+
+}
+
 int main(int argc, char *argv[]){
   if(argc != 2){
 		fprintf(stderr,"Filename expected as an argument.\n");
 		return 1;
 	}
   int i;
+  clock_t t;
   read_data(argv[1]);
   printf("%d, %d, %d\n", machines, jobs, threshold);
   printf("MACHINES:\n");
@@ -179,6 +198,10 @@ int main(int argc, char *argv[]){
   for(i=0;i<jobs;i++){
     printf("%.2f\n",times[i]);
   }
-
+  initialize();
+  t = clock();
   greedy_schedule();
+  t = clock() - t;
+  processing_time = ((double)t)/CLOCKS_PER_SEC;
+  print_solution(argv[1]);
 }
