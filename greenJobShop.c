@@ -62,18 +62,21 @@ double completition_time(int machine){
 
 
 void greedy_schedule(){
-  int i,j,p, priority, best_machine, sort_index[machines];
+  int i,j,p, priority, best_machine, machine_index[machines], job_index[jobs];
   double  completition_time[machines], impact[machines];
 
   //INITALIZING VALUES
   priority = 0;
 
-  for(j=0; j < machines; j ++){
-    completition_time[j] = 0;
-    sort_index[j] = j;
+  for(i=0; i < machines; i ++){
+    completition_time[i] = 0;
+    machine_index[i] = i;
+  }
+  for(i=0; i < jobs; i ++){
+    job_index[i] = i;
   }
 
-  for (i = 0; i < jobs; i++){
+  for (i = jobs-1; i >= 0; i--){
     //CHECK WHETHER THE TIME OR THE COST IS THE PRIORITY
     if((total_cost/threshold) > ((float)i/jobs)){
       priority=1;
@@ -85,10 +88,10 @@ void greedy_schedule(){
     for(j = 0; j < machines; j++){
 
       for(p=0; p < machines; p ++){
-        sort_index[p] = p;
+        machine_index[p] = p;
       }
       //IN THE FIRST ITERATION ONLY TAKES THE MACHINE COST IN ACCOUNT
-      if(i==0){
+      if(i==jobs-1){
         impact[j] = cost[j];
       }
       //IN OTHER ITERATIONS CONSIDERATES COST OR TIME IMPACTS
@@ -96,11 +99,6 @@ void greedy_schedule(){
 
         //CHECK THE PRIORITY TO CALCULATE IMPACT
         if(priority == 0){
-          /*if(completition_time[j] + times[i] > total_time){
-            impact[j] = ((completition_time[j] + times[i]-total_time)/total_time)*100;
-          }else{
-            impact[j] = 0.0;
-          }*/
           impact[j] = ((completition_time[j] + times[i])/total_time)*100;
         }else{
           impact[j] = ((cost[j]*times[i])/total_cost)*100;
@@ -109,17 +107,13 @@ void greedy_schedule(){
 
     }
     //SELECTING THE BEST CANDIDATE MACHINE
-    quick_sort(impact,sort_index,0,machines-1);
-    best_machine = sort_index[machines-1];
+    quick_sort(impact,machine_index,0,machines-1);
+    best_machine = machine_index[machines-1];
 
     //SCHEDULING AND UPDATING THE TOTAL COST AND TOTAL TIME
-    printf("j%d => m%d\n", i,best_machine );
-    schedule(i,best_machine);
+    schedule(job_index[i],best_machine);
     total_cost = total_cost + times[i]*cost[best_machine];
     completition_time[best_machine] = completition_time[best_machine] + times[i];
-    /*if(completition_time[best_machine] > total_time){
-      total_time = completition_time[best_machine];
-    }*/
     total_time = total_time + completition_time[best_machine] + times[i];
 
   }
