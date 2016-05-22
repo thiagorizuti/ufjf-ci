@@ -63,10 +63,12 @@ double completition_time(int machine){
 
 void greedy_schedule(){
   int i,j,p, priority, best_machine, machine_index[machines], job_index[jobs];
-  double  completition_time[machines], impact[machines];
+  double  completition_time[machines], impact[machines], time_sum, current_time_sum;
 
   //INITALIZING VALUES
   priority = 0;
+  time_sum = 0;
+  current_time_sum = 0;
 
   for(i=0; i < machines; i ++){
     completition_time[i] = 0;
@@ -74,6 +76,7 @@ void greedy_schedule(){
   }
   for(i=0; i < jobs; i ++){
     job_index[i] = i;
+    time_sum = time_sum + times[i];
   }
   quick_sort(times,job_index,0,jobs-1);
   for (i = jobs-1; i >= 0; i--){
@@ -83,7 +86,9 @@ void greedy_schedule(){
     printf("TEMPO TOTAL = %.2f\n", total_time);
     printf("CUSTO TOTAL/LIMITE = %.2f\n", total_cost/threshold);
     printf("JOBS/TOTAL JOBS = %.2f\n", (float)(jobs-1-i)/jobs);
-    if((total_cost/threshold) > ((float)(jobs-1-i)/jobs)){
+    printf("TIME/TOTAL TIME = %.2f\n", current_time_sum/time_sum);
+    printf("JOBS/TEMPO = %.2f\n", ((float)(jobs-1-i)/jobs)*(current_time_sum/time_sum));
+    if((total_cost/threshold) > ((float)(jobs-1-i)/jobs)*(current_time_sum/time_sum)){
       printf("PRIORIDADE: custo\n" );
       priority=1;
     }
@@ -91,7 +96,6 @@ void greedy_schedule(){
       printf("PRIORIDADE: tempo\n" );
       priority=0;
     }
-
     for(j = 0; j < machines; j++){
 
       for(p=0; p < machines; p ++){
@@ -112,10 +116,10 @@ void greedy_schedule(){
           impact[j] = ((cost[j]*times[i])/total_cost)*100;
           printf("IMPACTO M%d: %.2f\n",j,impact[j] );
         }
-        if(total_cost + cost[j]*times[i] > threshold){
+        /*if(total_cost + cost[j]*times[i] > threshold){
           impact[j] = 9999;
           printf("IMPACTO M%d: %.2f\n",j,impact[j] );
-        }
+        }*/
       }
     }
 
@@ -126,9 +130,10 @@ void greedy_schedule(){
 
     //SCHEDULING AND UPDATING THE TOTAL COST AND TOTAL TIME
     schedule(job_index[i],best_machine);
+    current_time_sum = current_time_sum + times[i];
     total_cost = total_cost + times[i]*cost[best_machine];
-    completition_time[best_machine] = completition_time[best_machine] + times[i];
     total_time = total_time + completition_time[best_machine] + times[i];
+    completition_time[best_machine] = completition_time[best_machine] + times[i];
     printf("\n");
   }
 
