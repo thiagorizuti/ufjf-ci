@@ -75,13 +75,20 @@ void greedy_schedule(){
   for(i=0; i < jobs; i ++){
     job_index[i] = i;
   }
-
+  quick_sort(times,job_index,0,jobs-1);
   for (i = jobs-1; i >= 0; i--){
+    printf("PARA J%d\n", job_index[i]);
     //CHECK WHETHER THE TIME OR THE COST IS THE PRIORITY
-    if((total_cost/threshold) > ((float)i/jobs)){
+    printf("CUSTO TOTAL = %.2f\n", total_cost);
+    printf("TEMPO TOTAL = %.2f\n", total_time);
+    printf("CUSTO TOTAL/LIMITE = %.2f\n", total_cost/threshold);
+    printf("JOBS/TOTAL JOBS = %.2f\n", (float)(jobs-1-i)/jobs);
+    if((total_cost/threshold) > ((float)(jobs-1-i)/jobs)){
+      printf("PRIORIDADE: custo\n" );
       priority=1;
     }
     else{
+      printf("PRIORIDADE: tempo\n" );
       priority=0;
     }
 
@@ -100,22 +107,29 @@ void greedy_schedule(){
         //CHECK THE PRIORITY TO CALCULATE IMPACT
         if(priority == 0){
           impact[j] = ((completition_time[j] + times[i])/total_time)*100;
+          printf("IMPACTO M%d: %.2f\n",j,impact[j] );
         }else{
           impact[j] = ((cost[j]*times[i])/total_cost)*100;
+          printf("IMPACTO M%d: %.2f\n",j,impact[j] );
+        }
+        if(total_cost + cost[j]*times[i] > threshold){
+          impact[j] = 9999;
+          printf("IMPACTO M%d: %.2f\n",j,impact[j] );
         }
       }
-
     }
+
     //SELECTING THE BEST CANDIDATE MACHINE
     quick_sort(impact,machine_index,0,machines-1);
     best_machine = machine_index[machines-1];
+    printf("ESCOLHA: M%d\n", machine_index[machines-1]);
 
     //SCHEDULING AND UPDATING THE TOTAL COST AND TOTAL TIME
     schedule(job_index[i],best_machine);
     total_cost = total_cost + times[i]*cost[best_machine];
     completition_time[best_machine] = completition_time[best_machine] + times[i];
     total_time = total_time + completition_time[best_machine] + times[i];
-
+    printf("\n");
   }
 
 }
@@ -166,6 +180,7 @@ void read_data(char *file_name){
 
     }
     threshold = atoi(buff);
+    fclose(fp);
 }
 
 
@@ -188,19 +203,23 @@ void initialize(){
 void print_solution(char name[]){
   int i, j;
   printf("%s\n", name);
-  for(i = 0; i < machines; i++){
-    printf("m%d:",i);
-    for (j = 0; j < jobs; j++){
-      if(scheduling[i][j]!= -1){
-          printf(" j%d,",scheduling[i][j]);
+  if(total_cost > threshold){
+    printf("Solução inviável!\n");
+      printf("total cost: %.02f\n",total_cost);
+  }else{
+    for(i = 0; i < machines; i++){
+      printf("m%d:",i);
+      for (j = 0; j < jobs; j++){
+        if(scheduling[i][j]!= -1){
+            printf(" j%d,",scheduling[i][j]);
+        }
       }
+      printf("\n");
     }
-    printf("\n");
+    printf("total time: %.02f\n",total_time);
+    printf("total cost: %.02f\n",total_cost);
+    printf("processing time: %Lf s\n",processing_time);
   }
-  printf("total time: %.02f\n",total_time);
-  printf("total cost: %.02f\n",total_cost);
-  printf("processing time: %Lf s\n",processing_time);
-
 }
 
 int main(int argc, char *argv[]){
