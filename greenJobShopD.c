@@ -50,8 +50,8 @@ void schedule(int job, int machine){
 }
 
 
-void greedy_schedule(float n){
-  int i, j, p, r, priority, best_machine, machine_index[machines], job_index[jobs];
+void greedy_schedule(){
+  int i,j,p, priority, best_machine, machine_index[machines], job_index[jobs];
   double  completition_time[machines], impact[machines], time_sum, current_time_sum;
 
   //INITALIZING VALUES
@@ -99,13 +99,7 @@ void greedy_schedule(float n){
 
     //SELECTING THE BEST CANDIDATE MACHINE
     quick_sort(impact,machine_index,0,machines-1);
-    if(n == 0 || ((int)(n*machines)) == 0){
-      best_machine = machine_index[machines-1];
-    }
-    else{
-      r = rand()%((int)(n*machines));
-      best_machine = machine_index[machines-(r+1)];
-    }
+    best_machine = machine_index[machines-1];
 
     //SCHEDULING AND UPDATING THE TOTAL COST AND TOTAL TIME
     schedule(job_index[i],best_machine);
@@ -206,23 +200,19 @@ void print_solution(char name[]){
 }
 
 int main(int argc, char *argv[]){
-  if(argc != 3){
-		fprintf(stderr,"Filename and random parameter expected as an argument.\n");
+  if(argc != 2){
+		fprintf(stderr,"Filename expected as an argument.\n");
 		return 1;
 	}
-  if(atof(argv[1]) < 0 || atof(argv[1]) > 1){
-  		fprintf(stderr,"Random parameter should be between 0 and 1.\n");
-  		return 1;
-  }
-  srand(time(NULL));
+  int i,j;
   clock_t start, end;
-  read_data(argv[2]);
+  read_data(argv[1]);
   initialize();
   start = clock();
-  greedy_schedule(atof(argv[1]));
+  greedy_schedule();
   end = clock();
   processing_time = (end-start)/(double)CLOCKS_PER_SEC;
-  print_solution(argv[2]);
+  print_solution(argv[1]);
   free(times);
   free(cost);
   free(scheduling);
