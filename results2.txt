@@ -1,0 +1,431 @@
+I1-m3n10-A.txt
+m0: j4, j8,
+m1: j0,
+m2: j9, j3, j1, j5, j2, j7, j6,
+total time: 590.00
+total cost: 20266.00
+processing time: 0.000004 s
+
+I2-m3n10-A.txt
+m0: j4, j8,
+m1: j0,
+m2: j9, j3, j1, j5, j2, j7, j6,
+total time: 590.00
+total cost: 20266.00
+processing time: 0.000005 s
+
+I3-m3n10-A.txt
+m0: j4, j8,
+m1: j0,
+m2: j9, j3, j1, j5, j2, j7, j6,
+total time: 590.00
+total cost: 20266.00
+processing time: 0.000005 s
+
+I4-m3n10-B.txt
+m0: j9, j1, j3, j8, j7, j2, j5, j4,
+m1: j0,
+m2: j6,
+total time: 758.00
+total cost: 30382.00
+processing time: 0.000004 s
+
+I5-m3n10-B.txt
+m0: j9, j1, j3, j8, j7, j2, j5, j4,
+m1: j0,
+m2: j6,
+total time: 758.00
+total cost: 30382.00
+processing time: 0.000004 s
+
+I6-m3n10-B.txt
+m0: j9, j1, j3, j8, j7, j2, j5, j4,
+m1: j0,
+m2: j6,
+total time: 758.00
+total cost: 30382.00
+processing time: 0.000006 s
+
+I7-m3n10-C.txt
+m0: j8, j1,
+m1: j4, j2,
+m2: j9, j0, j6, j7, j3, j5,
+total time: 654.00
+total cost: 21875.00
+processing time: 0.000005 s
+
+I8-m3n10-C.txt
+m0: j8, j4, j2,
+m1: j5, j1,
+m2: j9, j0, j6, j7, j3,
+total time: 594.00
+  total cost: 21901.00
+processing time: 0.000004 s
+
+I9-m3n10-C.txt
+m0: j8, j5, j1,
+m1: j3, j4, j2,
+m2: j9, j0, j6, j7,
+total time: 572.00
+total cost: 24788.00
+processing time: 0.000006 s
+
+i1-m5n20-A.txt
+m0: j19, j14, j4, j10, j16, j18, j13, j3, j5, j1, j2, j7, j8, j0,
+m1: j12, j9,
+m2: j15, j17,
+m3: j11,
+m4: j6,
+total time: 2140.00
+total cost: 42259.00
+processing time: 0.000009 s
+
+i2-m5n20-A.txt
+m0: j19, j14, j4, j10, j16, j18, j13, j3, j5, j1, j2, j8,
+m1: j12, j11,
+m2: j7, j6,
+m3: j15, j9,
+m4: j0, j17,
+total time: 1708.00
+total cost: 44765.00
+processing time: 0.000010 s
+
+i3-m5n20-A.txt
+m0: j19, j14, j4, j10, j16, j18, j13, j3, j5, j1, j2, j15,
+m1: j12, j11,
+m2: j7, j6,
+m3: j8, j9,
+m4: j0, j17,
+total time: 1707.00
+total cost: 44684.00
+processing time: 0.000012 s
+
+i4-m5n20-B.txt
+m0: j10,
+m1: j9, j13,
+m2: j1, j15,
+m3: j6,
+m4: j19, j14, j8, j4, j0, j18, j7, j12, j17, j16, j3, j2, j5, j11,
+total time: 2646.00
+total cost: 52125.00
+processing time: 0.000013 s
+
+i5-m5n20-B.txt
+m0: j11, j15,
+m1: j9, j6,
+m2: j2, j10,
+m3: j1, j13,
+m4: j19, j14, j8, j4, j0, j18, j7, j12, j17, j16, j3, j5,
+total time: 2089.00
+total cost: 55462.00
+processing time: 0.000012 s
+
+i6-m5n20-B.txt
+m0: j6,
+m1: j9, j10,
+m2: j5, j13,
+m3: j11, j15,
+m4: j19, j14, j8, j4, j0, j18, j7, j12, j17, j16, j3, j2, j1,
+total time: 2349.00
+total cost: 53444.00
+processing time: 0.000009 s
+
+i7-m5n20-C.txt
+m0: j12,
+m1: j11,
+m2: j8,
+m3: j13,
+m4: j19, j6, j4, j17, j16, j2, j10, j0, j14, j5, j15, j7, j3, j9, j1, j18,
+total time: 3487.00
+total cost: 72130.00
+processing time: 0.000009 s
+
+i8-m5n20-C.txt
+m0: j13,
+m1: j11, j12,
+m2: j18,
+m3: j8,
+m4: j19, j6, j4, j17, j16, j2, j10, j0, j14, j5, j15, j7, j3, j9, j1,
+total time: 3074.00
+total cost: 73154.00
+processing time: 0.000009 s
+
+i9-m5n20-C.txt
+m0: j8,
+m1: j11, j13,
+m2: j1, j12,
+m3: j18,
+m4: j19, j6, j4, j17, j16, j2, j10, j0, j14, j5, j15, j7, j3, j9,
+total time: 2727.00
+total cost: 74273.00
+processing time: 0.000010 s
+
+i1-m5n30-A.txt
+m0: j18,
+m1: j9, j5,
+m2: j12, j23,
+m3: j11,
+m4: j29, j15, j3, j25, j22, j6, j28, j17, j0, j8, j2, j10, j27, j7, j4, j16, j24, j21, j13, j19, j20, j14, j1, j26,
+total time: 7352.00
+total cost: 71811.00
+processing time: 0.000015 s
+
+i2-m5n30-A.txt
+m0: j12, j5,
+m1: j9, j26, j23,
+m2: j20, j11,
+m3: j1, j18,
+m4: j29, j15, j3, j25, j22, j6, j28, j17, j0, j8, j2, j10, j27, j7, j4, j16, j24, j21, j13, j19, j14,
+total time: 5690.00
+total cost: 76196.00
+processing time: 0.000012 s
+
+i3-m5n30-A.txt
+m0: j14, j11,
+m1: j9, j1, j18,
+m2: j19, j12, j5,
+m3: j20, j26, j23,
+m4: j29, j15, j3, j25, j22, j6, j28, j17, j0, j8, j2, j10, j27, j7, j4, j16, j24, j21, j13,
+total time: 4834.00
+total cost: 79532.00
+processing time: 0.000014 s
+
+i4-m5n30-B.txt
+m0: j29, j18, j17, j9, j3, j8, j7, j16, j20, j0, j4, j19, j1, j12, j5, j22, j26, j21, j15, j23, j28, j13, j14,
+m1: j24, j6,
+m2: j25, j11,
+m3: j27, j2,
+m4: j10,
+total time: 7968.00
+total cost: 66535.00
+processing time: 0.000014 s
+
+i5-m5n30-B.txt
+m0: j29, j18, j17, j9, j3, j8, j7, j16, j20, j0, j4, j19, j1, j12, j5, j22, j26, j21, j15,
+m1: j24, j14, j6,
+m2: j23, j25, j11,
+m3: j28, j27, j2,
+m4: j13, j10,
+total time: 5701.00
+total cost: 72934.00
+processing time: 0.000018 s
+
+i6-m5n30-B.txt
+m0: j29, j18, j17, j9, j3, j8, j7, j16, j20, j0, j4, j19, j1, j12, j5, j22, j26, j21,
+m1: j24, j13, j10,
+m2: j15, j14, j6,
+m3: j23, j25, j11,
+m4: j28, j27, j2,
+total time: 5258.00
+total cost: 73719.00
+processing time: 0.000011 s
+
+i7-m5n30-C.txt
+m0: j29, j24, j23, j10, j15, j17, j9, j25, j4, j18, j7, j3, j8, j16, j0, j12, j6, j21, j14, j5, j2, j28,
+m1: j13, j11,
+m2: j26, j27,
+m3: j1, j22,
+m4: j20, j19,
+total time: 5854.00
+total cost: 64562.00
+processing time: 0.000014 s
+
+i8-m5n30-C.txt
+m0: j29, j24, j23, j10, j15, j17, j9, j25, j4, j18, j7, j3, j8, j16, j0, j12, j6, j21, j14,
+m1: j13, j26, j27,
+m2: j5, j1, j22,
+m3: j2, j20, j19,
+m4: j28, j11,
+total time: 4564.00
+total cost: 70450.00
+processing time: 0.000030 s
+
+i9-m5n30-C.txt
+m0: j29, j24, j23, j10, j15, j17, j9, j25, j4, j18, j7, j3, j8, j16, j0, j12, j6, j21,
+m1: j13, j28, j11,
+m2: j14, j26, j27,
+m3: j5, j1, j22,
+m4: j2, j20, j19,
+total time: 4208.00
+total cost: 70529.00
+processing time: 0.000018 s
+
+i1-m15n70-A.txt
+m0: j5,
+m1: j58,
+m2: j45,
+m3: j60, j22,
+m4: j71, j70, j69, j74, j73, j72, j37, j40, j59, j1, j28, j35, j62, j31, j67, j51, j15, j24, j54, j21, j32, j27, j16, j46, j4, j25, j48, j56, j42, j20, j8, j55, j68, j10, j65, j14, j50, j53, j41, j9, j0, j64, j57, j44, j11, j23, j52, j18, j63, j7, j34, j33, j39, j6, j26, j61, j49,
+m5: j17, j2,
+m6: j13, j19,
+m7: j3,
+m8: j38, j36,
+m9: j29,
+m10: j30,
+m11: j66,
+m12: j12,
+m13: j43,
+m14: j47,
+total time: 26008.00
+total cost: 121927.00
+processing time: 0.000097 s
+
+i2-m15n70-A.txt
+m0: j34, j5,
+m1: j6, j12,
+m2: j61, j43,
+m3: j18, j66,
+m4: j69, j28, j1, j62, j59, j35, j37, j40, j51, j31, j15, j67, j54, j24, j21, j27, j32, j16, j48, j46, j56, j4, j25, j68, j42, j55, j20, j8, j41, j10, j53, j50, j65, j14, j9, j64, j0, j11, j7, j44,
+m5: j23, j29,
+m6: j63, j13, j22,
+m7: j57, j38,
+m8: j52, j3, j19,
+m9: j33, j58,
+m10: j39, j45,
+m11: j26, j30,
+m12: j17, j2,
+m13: j60, j47,
+m14: j49, j36,
+total time: 15529.00
+total cost: 134081.00
+processing time: 0.000122 s
+
+i3-m15n70-A.txt
+m0: j57, j38,
+m1: j39, j30,
+m2: j6, j12,
+m3: j7, j66,
+m4: j69, j28, j1, j62, j59, j35, j37, j40, j51, j31, j15, j67, j54, j24, j21, j27, j32, j16, j48, j46, j56, j4, j25, j68, j42, j55, j20, j8, j41, j10, j53, j50, j65, j14, j9, j64, j0, j23,
+m5: j11, j29,
+m6: j18, j60, j22,
+m7: j44, j49, j36,
+m8: j63, j13, j47,
+m9: j52, j3,
+m10: j34, j5, j19,
+m11: j33, j58,
+m12: j26, j45,
+m13: j17, j2,
+m14: j61, j43,
+total time: 14159.00
+total cost: 135092.00
+processing time: 0.000100 s
+
+i4-m15n70-B.txt
+m0: j50,
+m1:
+m2:
+m3: j41,
+m4: j22,
+m5: j17,
+m6: j36,
+m7: j12,
+m8: j29,
+m9: j69, j30, j35, j33, j8, j45, j54, j15, j56, j58, j6, j48, j47, j32, j10, j7, j62, j26, j25, j0, j34, j11, j44, j46, j42, j38, j68, j37, j67, j28, j19, j23, j3, j61, j16, j18, j53, j65, j5, j2, j52, j9, j40, j13, j43, j63, j64, j20, j31, j21, j60, j4, j66, j51, j49, j55, j39, j1, j14, j59, j24,
+m10: j57,
+m11: j27,
+m12:
+m13:
+m14:
+total time: 39267.00
+total cost: 95685.00
+processing time: 0.000084 s
+
+i5-m15n70-B.txt
+m0: j14,
+m1: j24,
+m2: j36,
+m3: j49,
+m4: j22, j50,
+m5: j66, j57,
+m6: j55, j27,
+m7: j39,
+m8: j1,
+m9: j69, j30, j35, j33, j8, j45, j54, j15, j56, j58, j6, j48, j47, j32, j10, j7, j62, j26, j25, j0, j34, j11, j44, j46, j42, j38, j68, j37, j67, j28, j19, j23, j3, j61, j16, j18, j53, j65, j5, j2, j52, j9, j40, j13, j43, j63, j64, j20, j31, j21, j60, j4, j51,
+m10: j59,
+m11: j17,
+m12: j41,
+m13: j12,
+m14: j29,
+total time: 29035.00
+total cost: 110777.00
+processing time: 0.000090 s
+
+i6-m15n70-B.txt
+m0: j2, j4, j50,
+m1: j40, j1,
+m2: j43, j14,
+m3: j18, j51, j57,
+m4: j22, j20, j24,
+m5: j61, j49, j27,
+m6: j53, j31, j36,
+m7: j65, j21, j41,
+m8: j5, j60, j12,
+m9: j69, j30, j35, j33, j8, j45, j54, j15, j56, j58, j6, j48, j47, j32, j10, j7, j62, j26, j25, j0, j34, j11, j44, j46, j42, j38, j68, j37, j67, j28, j19, j23, j3, j16,
+m10: j52, j66, j29,
+m11: j9, j55,
+m12: j13, j39,
+m13: j63, j59,
+m14: j64, j17,
+total time: 12531.00
+total cost: 133542.00
+processing time: 0.000096 s
+
+i7-m15n70-C.txt
+m0: j58,
+m1:
+m2: j69, j45, j22, j57, j18, j1, j65, j55, j9, j29, j28, j21, j20, j19, j31, j47, j12, j44, j30, j60, j54, j5, j59, j6, j41, j27, j14, j63, j38, j64, j35, j40, j33, j32, j34, j68, j50, j62, j36, j13, j51, j67, j39, j61, j66, j53, j2, j7, j26, j3, j8, j11, j42, j0, j49, j52, j37, j10, j4, j46, j48, j24, j25,
+m3:
+m4: j56,
+m5: j17,
+m6: j43,
+m7: j15,
+m8: j16,
+m9: j23,
+m10:
+m11:
+m12:
+m13:
+m14:
+total time: 43518.00
+total cost: 94902.00
+processing time: 0.000089 s
+
+i8-m15n70-C.txt
+m0: j13, j37,
+m1: j61, j10,
+m2: j69, j45, j22, j57, j18, j1, j65, j55, j9, j29, j28, j21, j20, j19, j31, j47, j12, j44, j30, j60, j54, j5, j59, j6, j41, j27, j14, j63, j38, j64, j35, j40, j33, j32, j34,
+m3: j53, j46,
+m4: j56, j26, j25,
+m5: j68, j42, j16,
+m6: j50, j11, j15,
+m7: j62, j3, j43,
+m8: j36, j8, j17,
+m9: j51, j0,
+m10: j67, j49, j58,
+m11: j39, j52, j23,
+m12: j66, j4,
+m13: j2, j48,
+m14: j7, j24,
+total time: 13518.00
+total cost: 131176.00
+processing time: 0.000094 s
+
+i9-m15n70-C.txt
+m0: j68, j8, j43,
+m1: j13, j0, j58,
+m2: j69, j45, j22, j57, j18, j1, j65, j55, j9, j29, j28, j21, j20, j19, j31, j47, j12, j44, j30, j60, j54, j5, j59, j6, j41, j27, j14, j63, j38, j64, j35,
+m3: j67, j52,
+m4: j56, j66, j4,
+m5: j40, j53, j46,
+m6: j33, j42, j16,
+m7: j32, j7, j17,
+m8: j34, j2, j48,
+m9: j50, j11, j15,
+m10: j62, j3, j24,
+m11: j36, j26, j25,
+m12: j51, j49, j23,
+m13: j39, j37,
+m14: j61, j10,
+total time: 11087.00
+total cost: 137270.00
+processing time: 0.000094 s
